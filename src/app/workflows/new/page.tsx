@@ -1,16 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { StepType, RunResult, WORKFLOW_TEMPLATES } from '@/lib/types';
 import { upsertLocalRun } from '@/lib/localHistory';
 import WorkflowBuilder from '@/components/WorkflowBuilder';
 import RunPanel from '@/components/RunPanel';
 import ResultsDisplay from '@/components/ResultsDisplay';
-import { ArrowLeft, Rocket } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
-export default function NewWorkflowPage() {
+function WorkflowEditor() {
     const searchParams = useSearchParams();
     const templateName = searchParams.get('template');
     const mode = searchParams.get('mode');
@@ -108,11 +107,11 @@ export default function NewWorkflowPage() {
 
     return (
         <div className="relative animate-fade-in-up">
-             {/* Background */}
+            {/* Background */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-200/20 rounded-full blur-[100px] -z-10 mix-blend-multiply animate-pulse" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-200/20 rounded-full blur-[100px] -z-10 mix-blend-multiply animate-pulse" />
-{/* 
-            <div className="mb-8">
+
+            {/* <div className="mb-8">
                 <Link href="/workflows" className="inline-flex items-center text-xs font-bold text-slate-500 hover:text-indigo-600 transition-colors mb-4 uppercase tracking-wider group">
                     <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Dashboard
                 </Link>
@@ -137,7 +136,7 @@ export default function NewWorkflowPage() {
                     onRemoveStep={handleRemoveStep}
                     onClear={handleClear}
                 />
-                
+
                 <div className="lg:col-span-5 sticky top-6 space-y-6">
                     <RunPanel
                         inputText={inputText}
@@ -153,5 +152,20 @@ export default function NewWorkflowPage() {
 
             {runResult && <ResultsDisplay result={runResult} />}
         </div>
+    );
+}
+
+export default function NewWorkflowPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4 text-slate-400">
+                    <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+                    <p className="text-sm font-medium animate-pulse">Loading designer...</p>
+                </div>
+            </div>
+        }>
+            <WorkflowEditor />
+        </Suspense>
     );
 }
