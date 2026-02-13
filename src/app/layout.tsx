@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${bodyFont.variable} ${displayFont.variable} antialiased text-black bg-white min-h-screen`}
       >
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen">
+        <main className="mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen">
           {children}
         </main>
       </body>

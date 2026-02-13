@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { StepType, RunResult, WORKFLOW_TEMPLATES, STEP_TYPE_INFO } from '@/lib/types';
+import Link from 'next/link';
+import { StepType, RunResult, WORKFLOW_TEMPLATES } from '@/lib/types';
 import { upsertLocalRun } from '@/lib/localHistory';
 import WorkflowBuilder from '@/components/WorkflowBuilder';
 import RunPanel from '@/components/RunPanel';
 import ResultsDisplay from '@/components/ResultsDisplay';
+import { ArrowLeft, Rocket } from 'lucide-react';
 
 export default function NewWorkflowPage() {
     const searchParams = useSearchParams();
@@ -105,8 +107,28 @@ export default function NewWorkflowPage() {
     };
 
     return (
-        <div className="relative">
-            <section id="workflow-builder" className="mb-12 scroll-mt-24">
+        <div className="relative animate-fade-in-up">
+             {/* Background */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-200/20 rounded-full blur-[100px] -z-10 mix-blend-multiply animate-pulse" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-200/20 rounded-full blur-[100px] -z-10 mix-blend-multiply animate-pulse" />
+{/* 
+            <div className="mb-8">
+                <Link href="/workflows" className="inline-flex items-center text-xs font-bold text-slate-500 hover:text-indigo-600 transition-colors mb-4 uppercase tracking-wider group">
+                    <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Dashboard
+                </Link>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                         <div className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-white/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-indigo-600 shadow-sm backdrop-blur mb-4">
+                            Workflow Designer
+                        </div>
+                        <h1 className="font-display text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+                           {mode === 'blank' ? 'New Workflow' : 'Configure Workflow'}
+                        </h1>
+                    </div>
+                </div>
+            </div> */}
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <WorkflowBuilder
                     workflowName={workflowName}
                     setWorkflowName={setWorkflowName}
@@ -115,56 +137,8 @@ export default function NewWorkflowPage() {
                     onRemoveStep={handleRemoveStep}
                     onClear={handleClear}
                 />
-            </section>
-
-            <section className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-14">
-                <div className="lg:col-span-3 bg-white/80 rounded-3xl border border-black/10 p-6 md:p-8 shadow-sm backdrop-blur">
-                    <div className="flex items-center justify-between mb-6">
-                        <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">Workflow Snapshot</p>
-                            <h2 className="font-display text-2xl text-black mt-2">Review before running</h2>
-                        </div>
-                        <div className="text-xs font-semibold text-black/60 rounded-full border border-black/10 px-3 py-1">
-                            {selectedSteps.length}/4 steps
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-black/10 bg-white/70 p-4">
-                        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60 mb-2">Workflow Name</div>
-                        <div className="text-lg font-semibold text-black">
-                            {workflowName.trim() ? workflowName : 'Untitled Workflow'}
-                        </div>
-                    </div>
-
-                    <div className="mt-6">
-                        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60 mb-3">Steps</div>
-                        {selectedSteps.length === 0 ? (
-                            <div className="rounded-2xl border border-black/10 bg-white/70 p-6 text-sm text-black/60">
-                                Add 2-4 steps to assemble your workflow.
-                            </div>
-                        ) : (
-                            <div className="flex flex-col gap-3">
-                                {selectedSteps.map((step, index) => (
-                                    <div
-                                        key={`${step}-${index}`}
-                                        className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/70 p-4"
-                                    >
-                                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-white text-xs font-semibold">
-                                            {index + 1}
-                                        </span>
-                                        <span className="text-xl">{STEP_TYPE_INFO[step].icon}</span>
-                                        <div>
-                                            <div className="text-sm font-semibold text-black">{STEP_TYPE_INFO[step].label}</div>
-                                            <div className="text-xs text-black/60">{STEP_TYPE_INFO[step].description}</div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                <div className="lg:col-span-2">
+                
+                <div className="lg:col-span-5 sticky top-6 space-y-6">
                     <RunPanel
                         inputText={inputText}
                         setInputText={setInputText}
@@ -175,7 +149,7 @@ export default function NewWorkflowPage() {
                         error={error}
                     />
                 </div>
-            </section>
+            </div>
 
             {runResult && <ResultsDisplay result={runResult} />}
         </div>
