@@ -1,38 +1,38 @@
 # Workflow Builder Lite
 
-A lightweight, AI-powered web application for building and running simple text processing workflows. Create pipelines with 2–4 steps like cleaning, summarizing, extracting key points, and more — then run them on any input text and see per-step results.
+A lightweight, AI-powered web application for building and running text processing workflows. Create visually stunning pipelines with customizable steps like cleaning, summarizing, extracting key points, and more—then run them on any input text and see instant results.
 
-**Live Demo:** _(add your Vercel URL here after deployment)_
+**Live Demo:** _(add your Vercel URL here)_
 
 ---
 
 ## Features
 
-- **Workflow Builder** — Visually compose workflows with 2-4 processing steps
-- **6 Step Types** — Clean Text, Summarize, Extract Key Points, Tag Category, Sentiment Analysis, Translate
-- **Quick Start Templates** — Pre-built workflows (Quick Summary, Full Analysis, Content Tagger, Deep Insights)
-- **Per-Step Output** — See the result of each step in the pipeline
-- **Run History** — View the last 5 workflow runs with full details
-- **Error Handling** — Validates input, handles API errors, and shows partial results on failure
-- **Responsive Design** — Works on desktop, tablet, and mobile
-- **Dark Theme** — Modern glassmorphism UI with animations
+- **Modern SaaS UI** — Beautifully designed with rich gradients, glassmorphism, and smooth animations.
+- **Workflow Builder** — Intuitive interface to compose workflows with 2-4 structured processing steps.
+- **6 Intelligent Step Types** — Clean Text, Summarize, Extract Key Points, Tag Category, Sentiment Analysis, Translate.
+- **Smart Templates** — Pre-built workflows (Quick Summary, Full Analysis, Content Tagger, Deep Insights) to get started instantly.
+- **Real-time Execution** — Watch your workflow run step-by-step with detailed timing and status indicators.
+- **Persistent History** — Your run history is saved locally, so you never lose track of your past experiments.
+- **Responsive & Accessible** — Fully optimized for desktop, tablet, and mobile devices.
 
 ## Tech Stack
 
-| Layer      | Technology                          |
-| ---------- | ----------------------------------- |
-| Framework  | Next.js 14 (App Router, TypeScript) |
-| Styling    | Vanilla CSS with custom properties  |
-| LLM        | OpenAI GPT-4o-mini                  |
-| Data Store | In-memory (server-side)             |
-| Deployment | Vercel                              |
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 15 (App Router, TypeScript) |
+| **Styling** | Tailwind CSS + Custom Animations |
+| **Icons** | Lucide React |
+| **LLM Integration** | Hugging Face Inference API (Mistral-7B) |
+| **State Management** | React Hooks + LocalStorage |
+| **Deployment** | Vercel |
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+ installed
-- An OpenAI API key ([get one here](https://platform.openai.com/api-keys))
+- A Hugging Face Access Token ([get one here](https://huggingface.co/settings/tokens))
 
 ### Installation
 
@@ -46,7 +46,7 @@ npm install
 
 # Set up environment variables
 cp .env.example .env.local
-# Edit .env.local and add your OPENAI_API_KEY
+# Edit .env.local and add your HUGGINGFACE_API_KEY into it
 
 # Start the development server
 npm run dev
@@ -63,61 +63,36 @@ npm start
 
 ## Usage
 
-1. **Pick a template** or build a custom workflow by adding 2-4 steps
-2. **Enter your text** in the input area
-3. **Click "Run Workflow"** — each step processes sequentially
-4. **View results** — see output from each step
-5. **Check history** — click any past run to view its details
+1. **Dashboard** — View all your recent runs and comprehensive analytics at a glance.
+2. **Create New** — Choose a template or start from scratch.
+3. **Build** — Add steps (Clean, Summarize, etc.) to your customized pipeline.
+4. **Run** — Enter your text, hit run, and watch the AI process each step in real-time.
+5. **Review** — Expand results to see exactly how the AI transformed your data at every stage.
 
 ## Project Structure
 
-```
+```bash
 src/
 ├── app/
-│   ├── api/
-│   │   ├── history/route.ts   # GET run history
-│   │   ├── run/route.ts       # POST execute workflow
-│   │   └── workflows/route.ts # CRUD workflows
-│   ├── globals.css            # Design system
-│   ├── layout.tsx             # Root layout with nav
-│   └── page.tsx               # Home page (builder + runner)
-└── lib/
-    ├── llm.ts                 # OpenAI integration
-    ├── store.ts               # In-memory data store
-    └── types.ts               # TypeScript types & constants
+│   ├── api/               # Next.js API Routes (Serverless)
+│   ├── workflows/         # Dashboard & Builder Pages
+│   │   ├── [id]/          # Run Detail Page
+│   │   ├── new/           # Workflow Builder Page
+│   │   └── page.tsx       # Dashboard Page
+│   ├── globals.css        # Global Tailwind Directives
+│   ├── layout.tsx         # Root Layout
+│   └── page.tsx           # Landing Page
+├── components/            # Reusable UI Components
+│   ├── Hero.tsx
+│   ├── HistoryDetailModal.tsx
+│   ├── HistoryList.tsx
+│   ├── ResultsDisplay.tsx
+│   ├── RunPanel.tsx
+│   ├── TemplateGrid.tsx
+│   └── WorkflowBuilder.tsx
+├── lib/
+│   ├── llm.ts             # Hugging Face Inference API Client
+│   ├── localHistory.ts    # LocalStorage Utilities
+│   ├── store.ts           # State Management
+│   └── types.ts           # TypeScript Types
 ```
-
-## What's Done
-
-- [x] Workflow creation with 2-4 steps
-- [x] 6 step types with tailored LLM prompts
-- [x] 4 pre-built templates
-- [x] Sequential workflow execution via OpenAI
-- [x] Per-step output display with timing
-- [x] Run history (last 5 runs) with detail modal
-- [x] Input validation and error handling
-- [x] Responsive dark-theme UI
-- [x] Environment variable configuration
-
-## What's Not Done
-
-- [ ] Persistent database (currently in-memory, resets on server restart)
-- [ ] User authentication
-- [ ] Workflow editing after creation
-- [ ] Drag-and-drop step reordering
-- [ ] Streaming LLM responses
-- [ ] Export results to file
-- [ ] Rate limiting
-
-## Deployment
-
-Deploy to Vercel:
-
-1. Push code to GitHub
-2. Connect the repository in [Vercel](https://vercel.com)
-3. Add `OPENAI_API_KEY` to Vercel environment variables
-4. Deploy
-
-## License
-
-MIT

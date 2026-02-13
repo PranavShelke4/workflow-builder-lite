@@ -18,7 +18,7 @@ This document records the key prompts used during AI-assisted development of Wor
 
 **Prompt:**
 
-> Plan the architecture for this project. Include API routes, data models, component structure, and LLM integration approach. Use OpenAI GPT-4o-mini.
+> Plan the architecture for this project. Include API routes, data models, component structure, and LLM integration approach. Use Hugging Face Inference API.
 
 **Purpose:** Generated the implementation plan with type definitions, API route structure, component hierarchy, and service layer design.
 
@@ -28,7 +28,7 @@ This document records the key prompts used during AI-assisted development of Wor
 
 **Prompt:**
 
-> Create system prompts for each workflow step type: Clean Text, Summarize, Extract Key Points, Tag Category, Sentiment Analysis, Translate. Each prompt should instruct the LLM to return structured, consistent output.
+> Create system prompts for each workflow step type: Clean Text, Summarize, Extract Key Points, Tag Category, Sentiment Analysis, Translate using Mistral 7B instruct format. Each prompt should instruct the LLM to return structured, consistent output.
 
 **Purpose:** Crafted tailored system prompts for each step type to ensure high-quality, structured output from the LLM.
 
@@ -44,14 +44,27 @@ This document records the key prompts used during AI-assisted development of Wor
 
 ---
 
-## 5. Error Handling
+## 6. Visual Redesign & Modernization
 
 **Prompt:**
 
-> Add proper input validation and error handling: validate empty text, text too short, wrong number of steps, LLM API errors. Show user-friendly error messages and handle partial failures.
+> "now full update this landing page that look best and modern use best color combination"
+> "update to tailwind css, add gradients, glassmorphism, and animations"
 
-**Purpose:** Implemented validation in API routes and client-side error display.
+**Purpose:** Transformed the basic dark theme into a high-end SaaS product design using Tailwind CSS, featuring indigo/violet gradients, animated background blobs, and a clean card-based layout.
 
 ---
 
-_Note: API keys, authentication tokens, and full agent responses are excluded from this document._
+## 7. Component Refactoring & Consistency
+
+**Prompt:**
+
+> "now also update this pages designe that look best that match index page designe"
+> "fix this file error" (referring to missing imports after a large refactor)
+
+**Purpose:** Propagated the new design language to the internal application pages (`/workflows`, `/workflows/new`). This involved:
+- installing `lucide-react` for consistent iconography.
+- updating the `WorkflowBuilder` and `RunPanel` components to use the new glassmorphism styles.
+- Fixing compilation errors introduced during the rapid style migration.
+
+---
