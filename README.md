@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Workflow Builder Lite
+
+A lightweight, AI-powered web application for building and running simple text processing workflows. Create pipelines with 2–4 steps like cleaning, summarizing, extracting key points, and more — then run them on any input text and see per-step results.
+
+**Live Demo:** _(add your Vercel URL here after deployment)_
+
+---
+
+## Features
+
+- **Workflow Builder** — Visually compose workflows with 2-4 processing steps
+- **6 Step Types** — Clean Text, Summarize, Extract Key Points, Tag Category, Sentiment Analysis, Translate
+- **Quick Start Templates** — Pre-built workflows (Quick Summary, Full Analysis, Content Tagger, Deep Insights)
+- **Per-Step Output** — See the result of each step in the pipeline
+- **Run History** — View the last 5 workflow runs with full details
+- **Error Handling** — Validates input, handles API errors, and shows partial results on failure
+- **Responsive Design** — Works on desktop, tablet, and mobile
+- **Dark Theme** — Modern glassmorphism UI with animations
+
+## Tech Stack
+
+| Layer      | Technology                          |
+| ---------- | ----------------------------------- |
+| Framework  | Next.js 14 (App Router, TypeScript) |
+| Styling    | Vanilla CSS with custom properties  |
+| LLM        | OpenAI GPT-4o-mini                  |
+| Data Store | In-memory (server-side)             |
+| Deployment | Vercel                              |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed
+- An OpenAI API key ([get one here](https://platform.openai.com/api-keys))
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd workflow-builder-lite
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local and add your OPENAI_API_KEY
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. **Pick a template** or build a custom workflow by adding 2-4 steps
+2. **Enter your text** in the input area
+3. **Click "Run Workflow"** — each step processes sequentially
+4. **View results** — see output from each step
+5. **Check history** — click any past run to view its details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── history/route.ts   # GET run history
+│   │   ├── run/route.ts       # POST execute workflow
+│   │   └── workflows/route.ts # CRUD workflows
+│   ├── globals.css            # Design system
+│   ├── layout.tsx             # Root layout with nav
+│   └── page.tsx               # Home page (builder + runner)
+└── lib/
+    ├── llm.ts                 # OpenAI integration
+    ├── store.ts               # In-memory data store
+    └── types.ts               # TypeScript types & constants
+```
 
-## Deploy on Vercel
+## What's Done
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [x] Workflow creation with 2-4 steps
+- [x] 6 step types with tailored LLM prompts
+- [x] 4 pre-built templates
+- [x] Sequential workflow execution via OpenAI
+- [x] Per-step output display with timing
+- [x] Run history (last 5 runs) with detail modal
+- [x] Input validation and error handling
+- [x] Responsive dark-theme UI
+- [x] Environment variable configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## What's Not Done
+
+- [ ] Persistent database (currently in-memory, resets on server restart)
+- [ ] User authentication
+- [ ] Workflow editing after creation
+- [ ] Drag-and-drop step reordering
+- [ ] Streaming LLM responses
+- [ ] Export results to file
+- [ ] Rate limiting
+
+## Deployment
+
+Deploy to Vercel:
+
+1. Push code to GitHub
+2. Connect the repository in [Vercel](https://vercel.com)
+3. Add `OPENAI_API_KEY` to Vercel environment variables
+4. Deploy
+
+## License
+
+MIT
