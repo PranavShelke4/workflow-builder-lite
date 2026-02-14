@@ -21,7 +21,7 @@ export default function WorkflowBuilder({
     const availableStepTypes = Object.values(StepType);
 
     return (
-        <div className="lg:col-span-7 bg-white/80 p-6 md:p-8 rounded-[1.5rem] shadow-sm border border-slate-200/60 backdrop-blur transition-all duration-300">
+        <div className="lg:col-span-7 bg-white/80 p-6 md:p-8 rounded-4xl shadow-sm border border-slate-200/60 backdrop-blur transition-all duration-300">
             <div className="flex items-center justify-between mb-8">
                 <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-white shadow-md shadow-slate-900/20">
@@ -60,7 +60,7 @@ export default function WorkflowBuilder({
                 </div>
 
                 {selectedSteps.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-20 text-center border-2 border-dashed border-slate-200 rounded-[1.5rem] bg-slate-50/50 hover:bg-slate-50 hover:border-indigo-300 transition-all group">
+                    <div className="flex flex-col items-center justify-center py-20 text-center border-2 border-dashed border-slate-200 rounded-4xl bg-slate-50/50 hover:bg-slate-50 hover:border-indigo-300 transition-all group">
                         <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg shadow-indigo-100 mb-6 group-hover:scale-110 transition-transform duration-300">
                             <LinkIcon className="w-8 h-8 text-indigo-400" />
                         </div>

@@ -24,7 +24,7 @@ export default function RunPanel({
     const isRunDisabled = isRunning || selectedSteps.length < 2 || inputText.trim().length === 0;
 
     return (
-        <div className="bg-white/80 rounded-[1.5rem] border border-slate-200/60 p-6 md:p-8 shadow-sm backdrop-blur transition-all duration-300">
+        <div className="bg-white/80 rounded-4xl border border-slate-200/60 p-6 md:p-8 shadow-sm backdrop-blur transition-all duration-300">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-3 text-slate-900">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100">
                     <Play className="w-5 h-5 ml-0.5" />
@@ -56,7 +56,7 @@ export default function RunPanel({
 
                 {error && (
                     <div className="p-4 rounded-xl bg-red-50 text-red-700 border border-red-100 flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
-                        <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                        <AlertCircle className="w-5 h-5 shrink-0" />
                         <span className="text-sm font-medium">{error}</span>
                     </div>
                 )}

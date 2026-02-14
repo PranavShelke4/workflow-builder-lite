@@ -21,7 +21,7 @@ export default function HomePage() {
 
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-slate-900 mb-8 max-w-5xl mx-auto leading-[1.1]">
             Automate text with
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600">
+            <span className="block mt-2 text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-indigo-600 to-blue-600">
                 precision & speed
             </span>
         </h1>
@@ -74,7 +74,7 @@ export default function HomePage() {
                 }
             ].map((item, i) => (
                 <div key={i} className="group relative bg-white rounded-3xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all hover:-translate-y-1">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-6 shadow-md transform rotate-3 group-hover:rotate-6 transition-transform`}>
+                    <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${item.color} flex items-center justify-center mb-6 shadow-md transform rotate-3 group-hover:rotate-6 transition-transform`}>
                         {item.icon}
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-3">{item.title}</h3>
@@ -111,7 +111,7 @@ export default function HomePage() {
                             'Persisted local storage'
                         ].map((feat, i) => (
                             <li key={i} className="flex items-center gap-3 text-slate-300">
-                                <CheckCircle2 className="w-5 h-5 text-indigo-400 flex-shrink-0" />
+                                <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
                                 <span>{feat}</span>
                             </li>
                         ))}
@@ -135,7 +135,7 @@ export default function HomePage() {
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <div className="bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl p-6 shadow-xl shadow-indigo-900/50">
+                        <div className="bg-linear-to-br from-indigo-600 to-violet-600 rounded-2xl p-6 shadow-xl shadow-indigo-900/50">
                             <div className="text-3xl font-bold text-white mb-1">Instant</div>
                             <div className="text-xs text-white/70 uppercase tracking-wider font-semibold">Results</div>
                         </div>

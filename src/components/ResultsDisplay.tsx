@@ -13,7 +13,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
 
     return (
         <section className="mt-16 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out">
-            <div className="bg-white/90 p-8 md:p-10 rounded-[2rem] shadow-2xl shadow-indigo-500/10 border border-slate-200/50 relative overflow-hidden backdrop-blur-xl">
+            <div className="bg-white/90 p-8 md:p-10 rounded-4xl shadow-2xl shadow-indigo-500/10 border border-slate-200/50 relative overflow-hidden backdrop-blur-xl">
                  <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[100px] -z-10" />
 
                 <h2 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
@@ -50,7 +50,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
 
                 {result.error && (
                     <div className="mb-10 p-6 bg-red-50 border border-red-100 rounded-2xl flex items-start gap-4 text-red-700 text-sm font-medium shadow-sm">
-                        <XCircle className="w-6 h-6 flex-shrink-0" />
+                        <XCircle className="w-6 h-6 shrink-0" />
                         <span>{result.error}</span>
                     </div>
                 )}

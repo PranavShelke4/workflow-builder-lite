@@ -24,7 +24,7 @@ export default function HistoryDetailModal({ run, onClose }: HistoryDetailModalP
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-in fade-in duration-300" onClick={onClose}>
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-in fade-in duration-300" onClick={onClose}>
             <div
                 className="w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-black/10 max-h-[85vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-300 slide-in-from-bottom-4"
                 onClick={(e) => e.stopPropagation()}
